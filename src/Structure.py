@@ -23,12 +23,12 @@ class ChessCell:
         self.piece: ChessPiece = piece
 
 
-class Chessboard:
+class ChessBoard:
     def __init__(self):
-        self.board = [[ChessCell(self._get_cell_color(i,j)) for i in range(8)] for j in range(8)]
+        self.board = [[ChessCell(self._get_cell_color(i, j)) for i in range(8)] for j in range(8)]
 
     def _get_cell_color(self, col, row):
-        return Colors.BLACK if (col+row) % 2 == 0 else Colors.WHITE
+        return Colors.WHITE if (col+row) % 2 else Colors.BLACK
 
 
     def setup_initial_position(self):
