@@ -5,12 +5,12 @@ class Colors(Enum):
     BLACK = "black"
 
 class Pieces(Enum):
-    PAWN = "Pawn"
-    ROOK = "Rook"
-    KNIGHT = "Knight"
-    BISHOP = "Bishop"
-    QUEEN = "Queen"
-    KING = "King"
+    PAWN = "pawn"
+    ROOK = "rook"
+    KNIGHT = "knight"
+    BISHOP = "bishop"
+    QUEEN = "queen"
+    KING = "king"
 
 class ChessPiece:
     def __init__(self, piece: Pieces, color: Colors):
@@ -34,32 +34,32 @@ class ChessBoard:
     def setup_initial_position(self):
         # Pawns
         for i in range(8):
-            self.board[1][i].piece = ChessPiece(Pieces.PAWN, Colors.WHITE)
-            self.board[6][i].piece = ChessPiece(Pieces.PAWN, Colors.BLACK)
+            self.board[i][1].piece = ChessPiece(Pieces.PAWN, Colors.WHITE)
+            self.board[i][6].piece = ChessPiece(Pieces.PAWN, Colors.BLACK)
         
         # Rooks
         self.board[0][0].piece = ChessPiece(Pieces.ROOK, Colors.WHITE)
-        self.board[0][7].piece = ChessPiece(Pieces.ROOK, Colors.WHITE)
-        self.board[7][0].piece = ChessPiece(Pieces.ROOK, Colors.BLACK)
+        self.board[7][0].piece = ChessPiece(Pieces.ROOK, Colors.WHITE)
+        self.board[0][7].piece = ChessPiece(Pieces.ROOK, Colors.BLACK)
         self.board[7][7].piece = ChessPiece(Pieces.ROOK, Colors.BLACK)
 
         # Knights
-        self.board[0][1].piece = ChessPiece(Pieces.KNIGHT, Colors.WHITE)
-        self.board[0][6].piece = ChessPiece(Pieces.KNIGHT, Colors.WHITE)
-        self.board[7][1].piece = ChessPiece(Pieces.KNIGHT, Colors.BLACK)
-        self.board[7][6].piece = ChessPiece(Pieces.KNIGHT, Colors.BLACK)
+        self.board[1][0].piece = ChessPiece(Pieces.KNIGHT, Colors.WHITE)
+        self.board[6][0].piece = ChessPiece(Pieces.KNIGHT, Colors.WHITE)
+        self.board[1][7].piece = ChessPiece(Pieces.KNIGHT, Colors.BLACK)
+        self.board[6][7].piece = ChessPiece(Pieces.KNIGHT, Colors.BLACK)
 
         # Bishops
-        self.board[0][2].piece = ChessPiece(Pieces.BISHOP, Colors.WHITE)
-        self.board[0][5].piece = ChessPiece(Pieces.BISHOP, Colors.WHITE)
-        self.board[7][2].piece = ChessPiece(Pieces.BISHOP, Colors.BLACK)
-        self.board[7][5].piece = ChessPiece(Pieces.BISHOP, Colors.BLACK)
+        self.board[2][0].piece = ChessPiece(Pieces.BISHOP, Colors.WHITE)
+        self.board[5][0].piece = ChessPiece(Pieces.BISHOP, Colors.WHITE)
+        self.board[2][7].piece = ChessPiece(Pieces.BISHOP, Colors.BLACK)
+        self.board[5][7].piece = ChessPiece(Pieces.BISHOP, Colors.BLACK)
 
         # Kings and Queens
-        self.board[0][3].piece = ChessPiece(Pieces.QUEEN, Colors.WHITE)
-        self.board[0][4].piece = ChessPiece(Pieces.KING, Colors.WHITE)
-        self.board[7][3].piece = ChessPiece(Pieces.QUEEN, Colors.BLACK)
-        self.board[7][4].piece = ChessPiece(Pieces.KING, Colors.BLACK)
+        self.board[3][0].piece = ChessPiece(Pieces.QUEEN, Colors.WHITE)
+        self.board[4][0].piece = ChessPiece(Pieces.KING, Colors.WHITE)
+        self.board[3][7].piece = ChessPiece(Pieces.QUEEN, Colors.BLACK)
+        self.board[4][7].piece = ChessPiece(Pieces.KING, Colors.BLACK)
 
     def move_piece(self, from_position, to_position):
         # Implement logic for moving chess pieces

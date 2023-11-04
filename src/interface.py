@@ -8,7 +8,9 @@ from enum import Enum
 # Initialize pygame
 def start_game():
     pygame.init()
-    game_loop(ChessBoard())
+    game = ChessBoard()
+    game.setup_initial_position()
+    game_loop(game)
 
 # Main game loop
 def game_loop(game: ChessBoard):
@@ -44,7 +46,16 @@ COLOR_MAP = {
 def draw_board(game: ChessBoard):
     for row in range(7, -1, -1):
         for col in range(8):
-            color = COLOR_MAP[game.board[col][7 - row].color]
+            color = COLOR_MAP[game.board[col][row].color]
             pygame.draw.rect(screen, color, (col * SQUARE_SIZE, row * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
+            if game.board[col][row].piece != None:
+                piece_x = col * SQUARE_SIZE
+                piece_y = row * SQUARE_SIZE
+                screen.blit(get_piece_image(game.board[col][row].piece), (piece_x, piece_y))
 
+def get_piece_image(piece: ChessPiece):
+    image_name = "images/" + get_image_name(piece)
+    return pygame.transform.scale(pygame.image.load(image_name), (SQUARE_SIZE, SQUARE_SIZE))
 
+def get_image_name(piece: ChessPiece):
+    return piece.color.value + "_" + piece.piece.value + ".png"
