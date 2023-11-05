@@ -1,4 +1,4 @@
-# Project Name
+# Chess in python
 
 Creating a chess engine in python
 
@@ -10,7 +10,7 @@ Creating a chess engine in python
 
 ## Installation
 
-Empty
+pygame
 
 ## Usage
 
