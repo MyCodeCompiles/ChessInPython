@@ -62,12 +62,27 @@ class ChessBoard:
         self.board[4][7].piece = ChessPiece(Pieces.KING, Colors.BLACK)
 
     def move_piece(self, from_position, to_position):
-        # Implement logic for moving chess pieces
-        print("TODO")
+        (from_col, from_row) = from_position
+        (to_col, to_row) = to_position
+        if self.board[from_col][from_row].piece == None:
+            return False
+        self.board[to_col][to_row].piece = self.board[from_col][from_row].piece
+        self.board[from_col][from_row].piece = None
+        return True
 
-    def is_valid_move(self, piece, from_position, to_position):
-        # Check if a move is valid
-        print("TODO")
+    def is_valid_move(self, from_position, to_position):
+        (from_col, from_row) = from_position
+        (to_col, to_row) = to_position
+        if self.board[from_col][from_row].piece == None:
+            return False
+        
+    def get_piece_moves(self, piece: ChessPiece, position):
+        (col, row) = position
+        pawn_dir = 1 if piece.color == Colors.WHITE else -1
+        if piece.piece == Pieces.PAWN:
+            moves = [(col, row+pawn_dir)]
+            if self.board[col-1][row+pawn_dir].piece != None and self.board[col-1][row+pawn_dir].piece.color != piece.color:
+                moves.append((col-1, row+pawn_dir))
 
     def is_checkmate(self, color):
         # Check for checkmate condition

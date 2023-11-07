@@ -3,7 +3,11 @@ from Structure import Colors
 import pygame
 from enum import Enum
 
-# Define Colors enum and ChessBoard class (as in your previous code)
+# Constants
+SCREEN_WIDTH = 600  # Adjust as needed
+SCREEN_HEIGHT = 600  # Adjust as needed
+SQUARE_SIZE = SCREEN_WIDTH // 8
+
 
 # Initialize pygame
 def start_game():
@@ -27,12 +31,6 @@ def game_loop(game: ChessBoard):
     pygame.quit()
 
 
-
-# Constants
-SCREEN_WIDTH = 600  # Adjust as needed
-SCREEN_HEIGHT = 600  # Adjust as needed
-SQUARE_SIZE = SCREEN_WIDTH // 8
-
 # Create a window
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Chess")
@@ -44,13 +42,13 @@ COLOR_MAP = {
 }
 
 def draw_board(game: ChessBoard):
-    for row in range(7, -1, -1):
+    for row in range(8):
         for col in range(8):
             color = COLOR_MAP[game.board[col][row].color]
-            pygame.draw.rect(screen, color, (col * SQUARE_SIZE, row * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
+            pygame.draw.rect(screen, color, (col * SQUARE_SIZE, (7 - row) * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
             if game.board[col][row].piece != None:
                 piece_x = col * SQUARE_SIZE
-                piece_y = row * SQUARE_SIZE
+                piece_y = (7 - row) * SQUARE_SIZE
                 screen.blit(get_piece_image(game.board[col][row].piece), (piece_x, piece_y))
 
 def get_piece_image(piece: ChessPiece):
